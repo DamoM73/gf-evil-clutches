@@ -1,6 +1,4 @@
-from pickle import GLOBAL
 from GameFrame import Level
-from GameFrame import Globals
 from Objects.Credits import Credits
 
 class EndScreen(Level):

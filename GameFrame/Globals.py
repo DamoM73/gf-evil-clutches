@@ -23,10 +23,10 @@ class Globals:
     LIVES = 3
 
     # - Set the Window display name
-    window_name = 'GF Game'
+    window_name = "Evil Clutches"
 
     # - Set the order of the rooms
-    levels = ["WelcomeScreen","EndScreen"]
+    levels = ["WelcomeScreen","GamePlay","EndScreen"]
 
     # - Set the starting level
     start_level = 0
