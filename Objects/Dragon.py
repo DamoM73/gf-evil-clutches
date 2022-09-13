@@ -1,4 +1,4 @@
-from GameFrame import RoomObject
+from GameFrame import RoomObject, Globals
 import pygame
 
 class Dragon(RoomObject):
@@ -26,8 +26,14 @@ class Dragon(RoomObject):
         Prespond to keypress up and down
         """
         
-        if key[pygame.K_UP]:
-            self.y_speed -= 5
+        if key[pygame.K_UP]: 
+            if self.y <= 0:
+                self.y = 0
+            else:
+                self.y -= 10         
         elif key[pygame.K_DOWN]:
-            self.y_speed += 5
+            if self.y >= Globals.SCREEN_HEIGHT - 150:
+                self.y = Globals.SCREEN_HEIGHT - 150
+            else:
+                self.y += 10
         

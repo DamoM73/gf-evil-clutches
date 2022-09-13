@@ -13,8 +13,8 @@ class Globals:
     FRAMES_PER_SECOND = 30
     
     # - Set the screen dimensions
-    SCREEN_WIDTH = 1200
-    SCREEN_HEIGHT = 900
+    SCREEN_WIDTH = 1000
+    SCREEN_HEIGHT = 750
 
     # - Tracks the players score
     SCORE = 0
