@@ -1,20 +1,21 @@
 from GameFrame import RoomObject
 import pygame
 
-class Title(RoomObject):
+class Dragon(RoomObject):
     """
-    The object for displaying the title
+    A class for the player's avitar (the Dragon)
     """
+    
     def __init__(self, room, x, y):
         """
         Initialise the Title object
         """
         # include attributes and methods from RoomObject
-        RoomObject.__init__(self, room, x, y)
+        RoomObject.__init__(self,room, x, y)
         
         # set image
-        image = self.load_image("Title.gif")
-        self.set_image(image,500,300)
+        image = self.load_image("Dragon.png")
+        self.set_image(image,135,150)
         
         # register for key events
         self.handle_key_events = True
@@ -22,9 +23,11 @@ class Title(RoomObject):
     
     def key_pressed(self, key):
         """
-        If the key pressed is space the game will start
+        Prespond to keypress up and down
         """
         
-        if key[pygame.K_SPACE]:
-            self.room.running = False
-            
+        if key[pygame.K_UP]:
+            self.y_speed -= 5
+        elif key[pygame.K_DOWN]:
+            self.y_speed += 5
+        
