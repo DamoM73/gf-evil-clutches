@@ -1,5 +1,6 @@
 from GameFrame import Level
 from Objects.Dragon import Dragon
+from Objects.Boss import Boss
 
 class GamePlay(Level):
     def __init__(self, screen, joysticks):
@@ -8,5 +9,7 @@ class GamePlay(Level):
         # set background image
         self.set_background_image("Background.bmp")
         
-        # add Dragon
+        # add objects
         self.add_room_object(Dragon(self,25,50))
+        self.add_room_object(Boss(self,840,200))
+        

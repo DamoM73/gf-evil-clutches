@@ -8,7 +8,7 @@ class Dragon(RoomObject):
     
     def __init__(self, room, x, y):
         """
-        Initialise the Title object
+        Initialise the Dragon object
         """
         # include attributes and methods from RoomObject
         RoomObject.__init__(self,room, x, y)
@@ -27,13 +27,19 @@ class Dragon(RoomObject):
         """
         
         if key[pygame.K_UP]: 
-            if self.y <= 0:
-                self.y = 0
-            else:
-                self.y -= 10         
+            self.y_speed = -10         
         elif key[pygame.K_DOWN]:
-            if self.y >= Globals.SCREEN_HEIGHT - 150:
-                self.y = Globals.SCREEN_HEIGHT - 150
-            else:
-                self.y += 10
+            self.y_speed = 10
+                
+    
+    def step(self):
+        """
+        Determine what happens to the Dragon on each click of the game clock
+        """
+        # check the top boundary
+        if self.y < 0:
+            self.y = 0
+        # check bottom boundary
+        elif self.y > Globals.SCREEN_HEIGHT - self.height:
+            self.y = Globals.SCREEN_HEIGHT - self.height
         
