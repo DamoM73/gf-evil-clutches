@@ -43,5 +43,4 @@ class Globals:
 
 
     # ----- User Defined Global Variables below this line ----- #
-
-    
+    spawn_rate = 25

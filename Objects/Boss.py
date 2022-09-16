@@ -1,4 +1,5 @@
 from GameFrame import RoomObject, Globals
+from Objects.Demon import Demon
 import random
 
 class Boss(RoomObject):
@@ -23,7 +24,13 @@ class Boss(RoomObject):
         """
         Determine what happens to the Boss on each tick of the game clock
         """
+        # keep inside room
         if self.y < 0:
             self.y_speed *= -1
         elif self.y > Globals.SCREEN_HEIGHT - self.height:
             self.y_speed *= -1
+            
+        # spawn demon
+        if random.randint(1,Globals.spawn_rate) == 1:
+            new_demon = Demon(self.room, self.x, self.y)
+            self.room.add_room_object(new_demon)
