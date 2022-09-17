@@ -36,10 +36,15 @@ class Dragon(RoomObject):
         """
         Determine what happens to the Dragon on each click of the game clock
         """
-        # check the top boundary
+        self.keep_in_room()
+            
+    
+    def keep_in_room(self):
+        """
+        Keeps the dragon inside the top and bottom room limits
+        """
         if self.y < 0:
             self.y = 0
-        # check bottom boundary
         elif self.y > Globals.SCREEN_HEIGHT - self.height:
             self.y = Globals.SCREEN_HEIGHT - self.height
         

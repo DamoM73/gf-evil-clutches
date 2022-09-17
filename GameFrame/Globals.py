@@ -43,4 +43,8 @@ class Globals:
 
 
     # ----- User Defined Global Variables below this line ----- #
-    spawn_rate = 25
+    
+    # demon variables
+    demon_min_spawn = 15        # meassured in frames
+    demon_max_spawn = 150       # meassured in frames
+    demon_speed = 10
