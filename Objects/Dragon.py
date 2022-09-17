@@ -17,13 +17,14 @@ class Dragon(RoomObject):
         image = self.load_image("Dragon.png")
         self.set_image(image,135,150)
         
-        # register for key events
+        # register events
         self.handle_key_events = True
         
     
+    # --- event handlers
     def key_pressed(self, key):
         """
-        Prespond to keypress up and down
+        Respond to keypress up and down
         """
         
         if key[pygame.K_UP]: 
@@ -47,4 +48,7 @@ class Dragon(RoomObject):
             self.y = 0
         elif self.y > Globals.SCREEN_HEIGHT - self.height:
             self.y = Globals.SCREEN_HEIGHT - self.height
+            
+            
+    
         
