@@ -45,9 +45,14 @@ class Globals:
     # ----- User Defined Global Variables below this line ----- #
     
     # demon variables
-    demon_min_spawn = 15
-    demon_max_spawn = 150
+    demon_min_spawn = 15        # ticks of game clock
+    demon_max_spawn = 150       # ticks of game clock
     demon_speed = 10
     
-    # fireballl variables
+    # fireball variables
     fireball_speed = 10
+    
+    # baby variables
+    baby_min_spawn = 30         # ticks of game clock
+    baby_max_spawn = 300        # ticks of game clock
+    baby_speed = 5
