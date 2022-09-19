@@ -1,5 +1,8 @@
 from GameFrame import RoomObject, Globals
+from Objects.Fireball import Fireball
 import pygame
+
+from Objects.Fireball import Fireball
 
 class Dragon(RoomObject):
     """
@@ -20,6 +23,10 @@ class Dragon(RoomObject):
         # register events
         self.handle_key_events = True
         
+        # allow bullet firing limit
+        self.room.set_timer(5, self.reset_shoot)
+        self.can_shoot = False
+        
     
     # --- event handlers
     def key_pressed(self, key):
@@ -27,10 +34,12 @@ class Dragon(RoomObject):
         Respond to keypress up and down
         """
         
-        if key[pygame.K_UP]: 
+        if key[pygame.K_w]: 
             self.y_speed = -10         
-        elif key[pygame.K_DOWN]:
+        elif key[pygame.K_s]:
             self.y_speed = 10
+        elif key[pygame.K_SPACE]:
+            self.shoot_fireball()
                 
     
     def step(self):
@@ -50,5 +59,20 @@ class Dragon(RoomObject):
             self.y = Globals.SCREEN_HEIGHT - self.height
             
             
+    def shoot_fireball(self):
+        """
+        Shoots a fireball from the Dragon
+        """
+        if self.can_shoot:
+            new_fireball = Fireball(self.room, self.x + self.width, self.y)
+            self.room.add_room_object(new_fireball)
+            self.room.set_timer(10, self.reset_shoot)
+            self.can_shoot = False
+            
+            
+    def reset_shoot(self):
+        """
+        Allows the dragon to shoot again
+        """
+        self.can_shoot = True
     
-        
