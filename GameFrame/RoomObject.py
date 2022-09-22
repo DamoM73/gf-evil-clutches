@@ -59,6 +59,9 @@ class RoomObject:
             if list_obj is obj:
                 self.collision_objects.pop(index)
 
+    def prestep(self):
+        pass
+    
     def step(self):
         pass
 
@@ -141,8 +144,7 @@ class RoomObject:
         elif angle < 360:
             self.x_speed, self.y_speed = self._get_direction(angle - 270, speed)
             self.x_speed, self.y_speed = self.y_speed, -self.x_speed
-    
-    
+
     @staticmethod
     def _get_direction(angle: int, speed: int):
         # Use Trigonometry to calculate x_speed and y_speed values

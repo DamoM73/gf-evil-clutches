@@ -19,6 +19,7 @@ class Level:
         self._clock = pygame.time.Clock()
         self.running = False
         self.quitting = False
+        self.background_color = (0, 0, 0)
         self.background_set = False
         self.background_image = 0
         self.background_y = 0
@@ -69,6 +70,10 @@ class Level:
 
             # - Process user events - #
             self.process_user_events()
+            
+            # Call Pre step on all objects
+            for item in self.objects:
+                item.prestep()
 
             events = pygame.event.get()
             for event in events:
@@ -130,7 +135,7 @@ class Level:
             self.catch_events(events)
 
             # - Clear the screen - #
-            self.screen.fill((0, 0, 0))
+            self.screen.fill(self.background_color)
             # - Add Background if set - #
             if self.background_set:
                 # - Scrolling if set - #
@@ -188,7 +193,7 @@ class Level:
             self.mouse_objects.append(room_object)
 
         if self.running:
-            self.init_collision_list(room_object)
+            self.dynamic_init_collision_list(room_object)
 
     def load_sound(self, sound_file: str) -> Sound:
         fq_filename = os.path.join('Sounds', sound_file)
@@ -203,6 +208,14 @@ class Level:
             for obj_instance in self.objects:
                 if type(obj_instance).__name__ == obj_name and obj_instance is not room_object:
                     room_object.collision_objects.append(obj_instance)
+
+    def dynamic_init_collision_list(self, room_object: RoomObject):
+        self.init_collision_list(room_object)
+        obj_type = type(room_object).__name__
+        for obj in self.objects:
+            if obj is not room_object:
+                if obj_type in obj.collision_object_types:
+                    obj.collision_objects.append(room_object)
 
     def catch_events(self, events):
         pass
