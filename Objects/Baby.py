@@ -22,6 +22,7 @@ class Baby(RoomObject):
         
         # handle events
         self.register_collision_object("Dragon")
+        self.register_collision_object("Fireball")
         
     
     # --- Event Handlers
