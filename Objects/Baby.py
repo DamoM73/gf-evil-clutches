@@ -21,17 +21,15 @@ class Baby(RoomObject):
         self.set_direction(180, Globals.baby_speed)
         
         # handle events
-        self.register_collision_object("Baby")
+        self.register_collision_object("Dragon")
         
     
+    # --- Event Handlers
     def handle_collision(self, other, other_type):
         """
-        Handles the collision event for the baby
+        Handles the collision event for Baby objects
         """
-        # fireball collision
-        if other_type == "Fireball":
-            self.room.delete_object(other)
-            self.room.delete_object(self)
-        elif other_type == "Dragon":
-            Globals.SCORE += 1
+        # dragon collision
+        if other_type == "Dragon":
+            Globals.SCORE += 50
             self.room.delete_object(self)

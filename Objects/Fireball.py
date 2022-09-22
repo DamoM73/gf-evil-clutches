@@ -18,16 +18,23 @@ class Fireball(RoomObject):
         self.set_image(image, 50, 48)
         
         # set movement
-        self.set_direction(0, Globals.fireball_speed)
+        self.set_direction(0, Globals.fireball_speed)     
         
-        # register events
+        # handle event
         self.register_collision_object("Demon")
+        self.register_collision_object("Baby")
         
         
+    # ---- Event handlers
     def handle_collision(self, other, other_type):
         """
-        Handles collision events for the Demon
+        Handles fireball collisions with other registered objects
         """
         if other_type == "Demon":
             self.room.delete_object(other)
             self.room.delete_object(self)
+            Globals.SCORE += 5
+        elif other_type == "Baby":
+            self.room.delete_object(other)
+            self.room.delete_object(self)
+            Globals.SCORE -= 10

@@ -24,8 +24,7 @@ class Demon(RoomObject):
         # register events
         self.register_collision_object("Dragon")
         
-    
-    # --- Event Handlers    
+           
     def step(self):
         """
         Determines what happens to the demon on each tick of the game clock
@@ -34,9 +33,10 @@ class Demon(RoomObject):
         self.outside_of_room()
         
     
+    # --- Event Handlers
     def handle_collision(self, other, other_type):
         """
-        Handles the collision events for the Demon
+        Handles the collision events for Demon objects
         """
         if other_type == "Dragon":
             self.room.running = False

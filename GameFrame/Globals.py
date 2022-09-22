@@ -50,7 +50,7 @@ class Globals:
     demon_speed = 10
     
     # fireball variables
-    fireball_speed = 10
+    fireball_speed = 20
     
     # baby variables
     baby_min_spawn = 30         # ticks of game clock

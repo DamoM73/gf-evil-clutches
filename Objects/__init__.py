@@ -5,3 +5,4 @@ from Objects.Boss import Boss
 from Objects.Demon import Demon
 from Objects.Fireball import Fireball
 from Objects.Baby import Baby
+from Objects.Hud import Score
