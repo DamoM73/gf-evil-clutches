@@ -33,3 +33,8 @@ class Baby(RoomObject):
         if other_type == "Dragon":
             self.room.score.update_score(50)
             self.room.delete_object(self)
+        elif other_type == "Fireball":
+            self.room.delete_object(self)
+            self.room.delete_object(other)
+            self.room.score.update_score(-10)
+            
