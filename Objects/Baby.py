@@ -19,3 +19,19 @@ class Baby(RoomObject):
         
         # set travel direction
         self.set_direction(180, Globals.baby_speed)
+        
+        # handle events
+        self.register_collision_object("Baby")
+        
+    
+    def handle_collision(self, other, other_type):
+        """
+        Handles the collision event for the baby
+        """
+        # fireball collision
+        if other_type == "Fireball":
+            self.room.delete_object(other)
+            self.room.delete_object(self)
+        elif other_type == "Dragon":
+            Globals.SCORE += 1
+            self.room.delete_object(self)
