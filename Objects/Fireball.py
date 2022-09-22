@@ -33,8 +33,8 @@ class Fireball(RoomObject):
         if other_type == "Demon":
             self.room.delete_object(other)
             self.room.delete_object(self)
-            Globals.SCORE += 5
+            self.room.score.update_score(5)
         elif other_type == "Baby":
             self.room.delete_object(other)
             self.room.delete_object(self)
-            Globals.SCORE -= 10
+            self.room.score.update_score(-10)

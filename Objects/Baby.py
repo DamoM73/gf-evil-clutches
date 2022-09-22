@@ -31,5 +31,5 @@ class Baby(RoomObject):
         """
         # dragon collision
         if other_type == "Dragon":
-            Globals.SCORE += 50
+            self.room.score.update_score(50)
             self.room.delete_object(self)

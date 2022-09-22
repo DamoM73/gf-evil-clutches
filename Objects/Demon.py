@@ -39,7 +39,12 @@ class Demon(RoomObject):
         Handles the collision events for Demon objects
         """
         if other_type == "Dragon":
-            self.room.running = False
+            self.room.delete_object(self)
+            Globals.LIVES -= 1
+            if Globals.LIVES > 0:
+                self.room.lives.update_image()
+            else:
+                self.room.running = False
     
     
     def keep_in_room(self):

@@ -1,4 +1,4 @@
-from GameFrame import TextObject
+from GameFrame import TextObject, RoomObject
 from GameFrame.Globals import Globals
 
 
@@ -21,9 +21,25 @@ class Score(TextObject):
         self.update_text()
         
     
-    def step(self):
+    def update_score(self, change):
         """
         Updates the score with each game tick
         """
+        Globals.SCORE += change
         self.text = str(Globals.SCORE)
         self.update_text()
+
+        
+class Lives(RoomObject):
+    
+    def __init__(self, room, x: int, y: int):
+        RoomObject.__init__(self, room, x, y)
+        
+        # set image
+        image = self.load_image(f"Lives_frames/Lives_{Globals.LIVES}.png")
+        self.set_image(image, 125, 23)
+        
+        
+    def update_image(self):
+        image = self.load_image(f"Lives_frames/Lives_{Globals.LIVES}.png")
+        self.set_image(image, 125, 23)
