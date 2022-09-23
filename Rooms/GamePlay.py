@@ -13,7 +13,9 @@ class GamePlay(Level):
         # add objects
         self.add_room_object(Dragon(self, 25, 50))
         self.add_room_object(Boss(self, 840, 200))
+        
         self.score = Score(self, Globals.SCREEN_WIDTH/2 - 20, 20, str(Globals.SCORE))
         self.add_room_object(self.score)
+        
         self.lives = Lives(self, Globals.SCREEN_WIDTH - 150, 20)
         self.add_room_object(self.lives)
