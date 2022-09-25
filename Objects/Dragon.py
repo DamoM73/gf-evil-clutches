@@ -10,7 +10,6 @@ class Dragon(RoomObject):
     """
     
     def __init__(self, room, x, y):
-        # sourcery skip: for-append-to-extend, list-comprehension, remove-zero-from-range
         """
         Initialise the Dragon object
         """
