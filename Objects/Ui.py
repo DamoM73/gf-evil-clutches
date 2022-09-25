@@ -33,13 +33,18 @@ class Score(TextObject):
 class Lives(RoomObject):
     
     def __init__(self, room, x: int, y: int):
+        # sourcery skip: for-append-to-extend, list-comprehension, remove-zero-from-range
         RoomObject.__init__(self, room, x, y)
         
         # set image
-        image = self.load_image(f"Lives_frames/Lives_{Globals.LIVES}.png")
-        self.set_image(image, 125, 23)
+        self.lives_icon = []
+        for index in range(0,6):
+            self.lives_icon.append(self.load_image(f"Lives_frames/Lives_{index}.png"))
+        self.update_image()
         
         
     def update_image(self):
-        image = self.load_image(f"Lives_frames/Lives_{Globals.LIVES}.png")
-        self.set_image(image, 125, 23)
+        """
+        Updates the number of lives on the UI
+        """
+        self.set_image(self.lives_icon[Globals.LIVES], 125, 23)

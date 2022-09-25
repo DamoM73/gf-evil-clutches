@@ -10,15 +10,23 @@ class Dragon(RoomObject):
     """
     
     def __init__(self, room, x, y):
+        # sourcery skip: for-append-to-extend, list-comprehension, remove-zero-from-range
         """
         Initialise the Dragon object
         """
         # include attributes and methods from RoomObject
         RoomObject.__init__(self,room, x, y)
         
+        # set animation values
+        self.frame_rate = 6
+        self.current_frame = 0
+        self.num_frames = 2
+                
         # set image
-        image = self.load_image("Dragon.png")
-        self.set_image(image,135,150)
+        self.image_frames = []
+        for index in range(self.num_frames):
+            self.image_frames.append(self.load_image(f"Dragon_frames/Dragon_{index}.png"))        
+        self.update_image()
         
         # register events
         self.handle_key_events = True
@@ -41,6 +49,15 @@ class Dragon(RoomObject):
         elif key[pygame.K_SPACE]:
             self.shoot_fireball()
                 
+    
+    def update_image(self):
+        """
+        Animates the Dragon by changing the image per the frame rate
+        """
+        self.current_frame = (self.current_frame + 1) % self.num_frames
+        self.set_image(self.image_frames[self.current_frame],135,150)
+        self.set_timer(self.frame_rate,self.update_image)
+    
     
     def step(self):
         """

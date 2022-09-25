@@ -1,7 +1,7 @@
 from GameFrame import Level, Globals
 from Objects.Dragon import Dragon
 from Objects.Boss import Boss
-from Objects.Hud import Score, Lives
+from Objects.Ui import Score, Lives
 
 class GamePlay(Level):
     def __init__(self, screen, joysticks):

@@ -8,15 +8,23 @@ class Boss(RoomObject):
     A class for the game's antagoist
     """
     def __init__(self, room, x, y):
+        # sourcery skip: for-append-to-extend, list-comprehension, remove-zero-from-range
         """
         Initialise the Dragon object
         """
         # include attributes and methods from RoomObject
         RoomObject.__init__(self, room, x, y)
         
+        # set animation values
+        self.frame_rate = 4
+        self.current_frame = 0
+        self.num_frames = 2
+        
         # set image
-        image = self.load_image("Boss.png")
-        self.set_image(image,135,165)
+        self.image_frames = []
+        for index in range(self.num_frames):
+            self.image_frames.append(self.load_image(f"Boss_frames/Boss_{index}.png"))
+        self.update_image()
         
         # set inital movement
         self.y_speed = random.choice((-10,10))
@@ -29,6 +37,15 @@ class Boss(RoomObject):
         baby_spawn_time = random.randint(Globals.baby_min_spawn,Globals.baby_max_spawn)
         self.set_timer(baby_spawn_time,self.spawn_baby)
         
+    
+    def update_image(self):
+        """
+        Animates the Boss by updating the image 
+        """
+        self.current_frame = (self.current_frame + 1) % self.num_frames
+        self.set_image(self.image_frames[self.current_frame],135,165)
+        self.set_timer(self.frame_rate,self.update_image)
+    
         
     def step(self):
         """
@@ -58,6 +75,7 @@ class Boss(RoomObject):
         # reset time fro next demon spawn
         demon_spawn_time = random.randint(Globals.demon_min_spawn,Globals.demon_max_spawn)
         self.set_timer(demon_spawn_time, self.spawn_demon)
+
         
     def spawn_baby(self):
         """

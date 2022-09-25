@@ -6,16 +6,23 @@ class Demon(RoomObject):
     A class for the game's evil minons
     """
     
-    def __init__(self, room, x, y):
+    def __init__(self, room, x, y):  
         """
         Initialise the Demon object
         """
         # include attributes and methods from RoomObject
         RoomObject.__init__(self,room, x, y)
         
+        # set animation values
+        self.frame_rate = 3
+        self.current_frame = 0
+        self.num_frames = 2
+        
         # set image
-        image = self.load_image("Demon.png")
-        self.set_image(image,130,115)
+        self.image_frames = []
+        for index in range(self.num_frames):
+            self.image_frames.append(self.load_image(f"Demon_frames\Demon_{index}.png"))        
+        self.update_image()
         
         # set travel direction
         angle = random.randint(135,225)
@@ -24,6 +31,15 @@ class Demon(RoomObject):
         # register events
         self.register_collision_object("Dragon")
         
+    
+    def update_image(self):
+        """
+        Animates the Demon by changing the image as per frame rate
+        """
+        self.current_frame = (self.current_frame + 1) % self.num_frames
+        self.set_image(self.image_frames[self.current_frame],130,115)
+        self.set_timer(self.frame_rate, self.update_image)
+    
            
     def step(self):
         """
