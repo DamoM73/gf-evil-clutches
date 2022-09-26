@@ -23,7 +23,7 @@ class Score(TextObject):
     
     def update_score(self, change):
         """
-        Updates the score with each game tick
+        Updates the score with each score change event
         """
         Globals.SCORE += change
         self.text = str(Globals.SCORE)
@@ -48,3 +48,44 @@ class Lives(RoomObject):
         Updates the number of lives on the UI
         """
         self.set_image(self.lives_icon[Globals.LIVES], 125, 23)
+        
+        
+class RescueTarget(TextObject):
+    """
+    Records the progress towards hatchling rescue target
+    """
+    def __init__(self, room, x: int, y: int, text=None):
+        """
+        Intialises the Rescue Target object
+        """         
+        # include attributes and methods from TextObject
+        TextObject.__init__(self, room, x, y,text)
+        
+        # set values         
+        self.size = 40
+        self.font = 'Arial Black'
+        self.colour = (255,255,255)
+        self.bold = False
+        self.update_text()
+        
+    
+    def update_target(self):
+        """
+        Records a rescue of a baby
+        """
+        Globals.baby_rescued += 1
+        if Globals.baby_rescued == Globals.baby_target:
+            self.target_bonus()
+            Globals.baby_rescued = 0
+            Globals.baby_target *= 2
+            Globals.demon_speed += 3
+        self.text = f"{Globals.baby_rescued}/{Globals.baby_target}"
+        self.update_text()
+        
+        
+    def target_bonus(self):
+        """
+        Gives bonus for reaching target
+        """
+        self.room.score.update_score(Globals.baby_rescued * 10)
+        

@@ -86,5 +86,6 @@ class Boss(RoomObject):
         self.room.add_room_object(new_baby)
         
         # reset timer for next baby spawn
-        baby_spawn_time = random.randint(Globals.baby_min_spawn,Globals.baby_max_spawn)
+        baby_spawn_time = random.randint(Globals.baby_min_spawn + Globals.baby_rescued,
+                                         Globals.baby_max_spawn + Globals.baby_rescued*2)
         self.set_timer(baby_spawn_time,self.spawn_baby)

@@ -46,13 +46,17 @@ class Globals:
     
     # demon variables
     demon_min_spawn = 15        # ticks of game clock
-    demon_max_spawn = 150       # ticks of game clock
-    demon_speed = 10
+    demon_max_spawn = None       # ticks of game clock
+    demon_speed = None
     
     # fireball variables
     fireball_speed = 20
     
     # baby variables
     baby_min_spawn = 30         # ticks of game clock
-    baby_max_spawn = 300        # ticks of game clock
+    baby_max_spawn = 200        # ticks of game clock
     baby_speed = 5
+    
+    # baby rescue target vaariable
+    baby_rescued = 0
+    baby_target = 10

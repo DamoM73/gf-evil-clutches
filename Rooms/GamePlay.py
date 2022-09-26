@@ -1,7 +1,7 @@
 from GameFrame import Level, Globals
 from Objects.Dragon import Dragon
 from Objects.Boss import Boss
-from Objects.Ui import Score, Lives
+from Objects.Ui import Score, Lives, RescueTarget
 
 class GamePlay(Level):
     def __init__(self, screen, joysticks):
@@ -19,3 +19,8 @@ class GamePlay(Level):
         
         self.lives = Lives(self, Globals.SCREEN_WIDTH - 150, 20)
         self.add_room_object(self.lives)
+        
+        self.target = RescueTarget(self, 25,
+                                   Globals.SCREEN_HEIGHT - 60,
+                                   f"{Globals.baby_rescued}/{Globals.baby_target}")
+        self.add_room_object(self.target)

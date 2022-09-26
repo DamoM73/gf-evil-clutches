@@ -68,8 +68,10 @@ class Demon(RoomObject):
         Keeps the demon inside the top and bottom room limits
         """
         if self.y < 0:
+            self.y = 0
             self.y_speed *= -1
         elif self.y > Globals.SCREEN_HEIGHT - self.height:
+            self.y = Globals.SCREEN_HEIGHT - self.height
             self.y_speed *= -1
             
     
