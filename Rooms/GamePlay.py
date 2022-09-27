@@ -21,6 +21,6 @@ class GamePlay(Level):
         self.add_room_object(self.lives)
         
         self.target = RescueTarget(self, 25,
-                                   Globals.SCREEN_HEIGHT - 60,
-                                   f"{Globals.baby_rescued}/{Globals.baby_target}")
+                                   Globals.SCREEN_HEIGHT - 50,
+                                   f"{Globals.baby_rescued}/{Globals.baby_target} Rescued")
         self.add_room_object(self.target)

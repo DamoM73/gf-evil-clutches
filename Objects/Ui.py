@@ -62,12 +62,12 @@ class RescueTarget(TextObject):
         TextObject.__init__(self, room, x, y,text)
         
         # set values         
-        self.size = 40
+        self.size = 30
         self.font = 'Arial Black'
         self.colour = (255,255,255)
         self.bold = False
         self.update_text()
-        
+                
     
     def update_target(self):
         """
@@ -79,7 +79,7 @@ class RescueTarget(TextObject):
             Globals.baby_rescued = 0
             Globals.baby_target *= 2
             Globals.demon_speed += 3
-        self.text = f"{Globals.baby_rescued}/{Globals.baby_target}"
+        self.text = f"{Globals.baby_rescued}/{Globals.baby_target} Rescued"
         self.update_text()
         
         

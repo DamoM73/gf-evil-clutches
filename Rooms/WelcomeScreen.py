@@ -21,4 +21,4 @@ class WelcomeScreen(Level):
         
         # play music
         self.soundtrack = self.load_sound("Music.mp3")
-        self.soundtrack.play()
+        self.soundtrack.play(loops=-1)
