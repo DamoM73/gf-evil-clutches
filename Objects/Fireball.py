@@ -14,8 +14,8 @@ class Fireball(RoomObject):
         RoomObject.__init__(self, room, x, y)
         
         # set image
-        image = self.load_image("Fireball.png")
-        self.set_image(image, 50, 48)
+        image = self.load_image("Laser.png")
+        self.set_image(image, 33, 9)
         
         # set movement
         self.set_direction(0, Globals.fireball_speed)     

@@ -18,12 +18,12 @@ class Boss(RoomObject):
         # set animation values
         self.frame_rate = 4
         self.current_frame = 0
-        self.num_frames = 2
+        self.num_frames = 4
         
         # set image
         self.image_frames = []
         for index in range(self.num_frames):
-            self.image_frames.append(self.load_image(f"Boss_frames/Boss_{index}.png"))
+            self.image_frames.append(self.load_image(f"Zork_frames/Zork_{index}.png"))
         self.update_image()
         
         # set inital movement
@@ -43,7 +43,7 @@ class Boss(RoomObject):
         Animates the Boss by updating the image 
         """
         self.current_frame = (self.current_frame + 1) % self.num_frames
-        self.set_image(self.image_frames[self.current_frame],135,165)
+        self.set_image(self.image_frames[self.current_frame],200,248)
         self.set_timer(self.frame_rate,self.update_image)
     
         
@@ -69,7 +69,7 @@ class Boss(RoomObject):
         Randomly spawns a new demon
         """
         # spawn demon and add to room
-        new_demon = Demon(self.room, self.x, self.y)
+        new_demon = Demon(self.room, self.x, self.y + self.height/2)
         self.room.add_room_object(new_demon)
         
         # reset time fro next demon spawn
@@ -82,7 +82,7 @@ class Boss(RoomObject):
         Randomly spawns a new baby
         """
         # spawn baby and add to room
-        new_baby = Baby(self.room, self.x, self.y)
+        new_baby = Baby(self.room, self.x, self.y + self.height/2)
         self.room.add_room_object(new_baby)
         
         # reset timer for next baby spawn

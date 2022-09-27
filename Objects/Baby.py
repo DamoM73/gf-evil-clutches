@@ -1,5 +1,6 @@
 from GameFrame import RoomObject
 from GameFrame.Globals import Globals
+import random
 
 class Baby(RoomObject):
     """
@@ -15,14 +16,14 @@ class Baby(RoomObject):
         RoomObject.__init__(self,room,x,y)
         
         # set animation values
-        self.frame_rate = 2
-        self.current_frame = 0
-        self.num_frames = 2
+        self.frame_rate = 4
+        self.current_frame = random.randint(0,7)
+        self.num_frames = 8
         
         # set image
         self.image_fames = []
-        for index in range(self.frame_rate):
-            self.image_fames.append(self.load_image(f"Baby_frames/Baby_{index}.png"))
+        for index in range(self.num_frames):
+            self.image_fames.append(self.load_image(f"Astronaut_frames/Astronaut_{index}.png"))
         self.update_image()
         
         # set travel direction
@@ -50,5 +51,5 @@ class Baby(RoomObject):
         Animates the Baby by chnaging the image per frame rate
         """
         self.current_frame = (self.current_frame + 1) % self.num_frames
-        self.set_image(self.image_fames[self.current_frame], 53, 55)
+        self.set_image(self.image_fames[self.current_frame], 56, 56)
         self.set_timer(self.frame_rate,self.update_image)

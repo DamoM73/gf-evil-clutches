@@ -8,11 +8,11 @@ class GamePlay(Level):
         Level.__init__(self, screen, joysticks)
         
         # set background image
-        self.set_background_image("Background.bmp")
+        self.set_background_image("Background.png")
         
         # add objects
         self.add_room_object(Dragon(self, 25, 50))
-        self.add_room_object(Boss(self, 840, 200))
+        self.add_room_object(Boss(self, Globals.SCREEN_WIDTH - 225, 200))
         
         self.score = Score(self, Globals.SCREEN_WIDTH/2 - 20, 20, str(Globals.SCORE))
         self.add_room_object(self.score)

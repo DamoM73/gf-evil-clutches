@@ -6,7 +6,7 @@ class WelcomeScreen(Level):
         Level.__init__(self, screen, joysticks)
     
         # set background image
-        self.set_background_image("Background.bmp")
+        self.set_background_image("Background.png")
         
         # add title object
         self.add_room_object(Title(self, Globals.SCREEN_WIDTH / 2 - 250, 

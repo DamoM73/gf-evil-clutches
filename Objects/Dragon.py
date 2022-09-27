@@ -19,12 +19,12 @@ class Dragon(RoomObject):
         # set animation values
         self.frame_rate = 6
         self.current_frame = 0
-        self.num_frames = 2
+        self.num_frames = 4
                 
         # set image
         self.image_frames = []
         for index in range(self.num_frames):
-            self.image_frames.append(self.load_image(f"Dragon_frames/Dragon_{index}.png"))        
+            self.image_frames.append(self.load_image(f"Rescue_frames/Rescue_{index}.png"))        
         self.update_image()
         
         # register events
@@ -54,7 +54,7 @@ class Dragon(RoomObject):
         Animates the Dragon by changing the image per the frame rate
         """
         self.current_frame = (self.current_frame + 1) % self.num_frames
-        self.set_image(self.image_frames[self.current_frame],135,150)
+        self.set_image(self.image_frames[self.current_frame],100,100)
         self.set_timer(self.frame_rate,self.update_image)
     
     
@@ -80,7 +80,7 @@ class Dragon(RoomObject):
         Shoots a fireball from the Dragon
         """
         if self.can_shoot:
-            new_fireball = Fireball(self.room, self.x + self.width, self.y)
+            new_fireball = Fireball(self.room, self.x + self.width, self.y + self.height/2 - 4)
             self.room.add_room_object(new_fireball)
             self.room.set_timer(10, self.reset_shoot)
             self.can_shoot = False

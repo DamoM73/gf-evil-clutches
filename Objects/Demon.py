@@ -14,14 +14,14 @@ class Demon(RoomObject):
         RoomObject.__init__(self,room, x, y)
         
         # set animation values
-        self.frame_rate = 3
-        self.current_frame = 0
-        self.num_frames = 2
+        self.frame_rate = 4
+        self.current_frame = random.randint(0,7)
+        self.num_frames = 8
         
         # set image
         self.image_frames = []
         for index in range(self.num_frames):
-            self.image_frames.append(self.load_image(f"Demon_frames\Demon_{index}.png"))        
+            self.image_frames.append(self.load_image(f"Asteroid_frames\Asteroid_{index}.png"))        
         self.update_image()
         
         # set travel direction
@@ -37,7 +37,7 @@ class Demon(RoomObject):
         Animates the Demon by changing the image as per frame rate
         """
         self.current_frame = (self.current_frame + 1) % self.num_frames
-        self.set_image(self.image_frames[self.current_frame],130,115)
+        self.set_image(self.image_frames[self.current_frame],50,49)
         self.set_timer(self.frame_rate, self.update_image)
     
            
