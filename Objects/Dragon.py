@@ -16,6 +16,9 @@ class Dragon(RoomObject):
         # include attributes and methods from RoomObject
         RoomObject.__init__(self,room, x, y)
         
+        # set object values
+        self.invincible = False
+        
         # set animation values
         self.frame_rate = 6
         self.current_frame = 0
@@ -23,16 +26,17 @@ class Dragon(RoomObject):
                 
         # set image
         self.image_frames = []
+        self.invincible_frames = []
         for index in range(self.num_frames):
-            self.image_frames.append(self.load_image(f"Rescue_frames/Rescue_{index}.png"))        
+            self.image_frames.append(self.load_image(f"Rescue_frames/Rescue_{index}.png"))
+            self.invincible_frames.append(self.load_image(f"Rescue_invinc_frames/Rescue_{index}.png"))        
         self.update_image()
         
         # register events
         self.handle_key_events = True
         
-        # allow bullet firing limit
-        self.room.set_timer(5, self.reset_shoot)
-        self.can_shoot = False
+        # firing mechanism
+        self.can_shoot = True
         
     
     # --- event handlers
@@ -54,8 +58,11 @@ class Dragon(RoomObject):
         Animates the Dragon by changing the image per the frame rate
         """
         self.current_frame = (self.current_frame + 1) % self.num_frames
-        self.set_image(self.image_frames[self.current_frame],100,100)
-        self.set_timer(self.frame_rate,self.update_image)
+        if self.invincible:
+            self.set_image(self.invincible_frames[self.current_frame],100,100)
+        else:    
+            self.set_image(self.image_frames[self.current_frame],100,100)
+        self.set_timer(self.frame_rate, self.update_image)
     
     
     def step(self):
@@ -79,16 +86,30 @@ class Dragon(RoomObject):
         """
         Shoots a fireball from the Dragon
         """
-        if self.can_shoot:
+        if self.room.count_object("Fireball") < Globals.fireball_max and self.can_shoot:
             new_fireball = Fireball(self.room, self.x + self.width, self.y + self.height/2 - 4)
-            self.room.add_room_object(new_fireball)
-            self.room.set_timer(10, self.reset_shoot)
+            self.room.add_room_object(new_fireball)            
             self.can_shoot = False
+            self.set_timer(10, self.reset_shoot)
             
-            
+    
     def reset_shoot(self):
         """
-        Allows the dragon to shoot again
+        Re-enables shooting
         """
         self.can_shoot = True
-    
+        
+        
+    def set_invincible(self):
+        """
+        Makes the Dragon invincible for limited time
+        """
+        self.invincible = True
+        self.set_timer(Globals.invincible_duration, self.reset_invincible)
+        
+        
+    def reset_invincible(self):
+        """
+        Turns invinciblew off
+        """
+        self.invincible = False

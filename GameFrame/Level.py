@@ -249,6 +249,16 @@ class Level:
                 self.user_events.pop(index)
                 event()
 
+
+    def count_object(self, object_name):
+        total = 0
+        for item in self.objects:
+            item_type = type(item).__name__
+            if object_name == item_type:
+                total += 1            
+        return total
+
+
     # Iterate backwards over a list, using an index and item iterator
     def enumerate_backwards(self, object_list: List):
         index = len(object_list)

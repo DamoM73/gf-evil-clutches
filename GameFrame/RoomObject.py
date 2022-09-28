@@ -80,6 +80,7 @@ class RoomObject:
                     collision_found = True
                     break
         return collision_found
+    
 
     def handle_collision(self, other, other_type):
         pass

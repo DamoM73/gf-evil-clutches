@@ -25,6 +25,13 @@ class Fireball(RoomObject):
         self.register_collision_object("Baby")
         
         
+    def step(self):
+        """
+        Determine what happens to the fireball on each tick of the game clock
+        """
+        self.outside_of_room()
+    
+        
     # ---- Event handlers
     def handle_collision(self, other, other_type):
         """
@@ -38,3 +45,11 @@ class Fireball(RoomObject):
             self.room.delete_object(other)
             self.room.delete_object(self)
             self.room.score.update_score(-10)
+            
+    
+    def outside_of_room(self):
+        """
+        removes fireball if it has existed the room
+        """
+        if self.x > Globals.SCREEN_WIDTH:
+            self.room.delete_object(self)

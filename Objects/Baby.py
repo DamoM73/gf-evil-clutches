@@ -33,6 +33,22 @@ class Baby(RoomObject):
         self.register_collision_object("Dragon")
         
     
+    def update_image(self):
+        """
+        Animates the Baby by chnaging the image per frame rate
+        """
+        self.current_frame = (self.current_frame + 1) % self.num_frames
+        self.set_image(self.image_fames[self.current_frame], 56, 56)
+        self.set_timer(self.frame_rate,self.update_image)
+    
+    
+    def step(self):
+        """
+        Determines what happend to the baby on each tick of the game clock
+        """
+        self.outside_of_room()
+    
+    
     # --- Event Handlers
     def handle_collision(self, other, other_type):
         """
@@ -44,12 +60,10 @@ class Baby(RoomObject):
             self.room.target.update_target()
             self.room.delete_object(self)
             
-            
     
-    def update_image(self):
+    def outside_of_room(self):
         """
-        Animates the Baby by chnaging the image per frame rate
+        removes babies that have existed the room
         """
-        self.current_frame = (self.current_frame + 1) % self.num_frames
-        self.set_image(self.image_fames[self.current_frame], 56, 56)
-        self.set_timer(self.frame_rate,self.update_image)
+        if self.x < 0 - self.width:
+            self.room.delete_object(self)

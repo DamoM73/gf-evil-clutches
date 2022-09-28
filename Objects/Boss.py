@@ -1,7 +1,11 @@
+from distutils.spawn import spawn
 from GameFrame import RoomObject, Globals
 from Objects.Demon import Demon
 from Objects.Baby import Baby
+from Objects.Bonuses import LifeBonus, ShieldBonus
 import random
+
+from Objects.Ui import Lives
 
 class Boss(RoomObject):
     """
@@ -36,6 +40,10 @@ class Boss(RoomObject):
         # spawn the initial baby spawn time
         baby_spawn_time = random.randint(Globals.baby_min_spawn,Globals.baby_max_spawn)
         self.set_timer(baby_spawn_time,self.spawn_baby)
+        
+        # prevent bonuses from spawning
+        self.bonus_can_spawn = False
+        self.set_timer(Globals.bonus_time, self.spawn_bonus)
         
     
     def update_image(self):
@@ -89,3 +97,15 @@ class Boss(RoomObject):
         baby_spawn_time = random.randint(Globals.baby_min_spawn + Globals.baby_rescued,
                                          Globals.baby_max_spawn + Globals.baby_rescued*2)
         self.set_timer(baby_spawn_time,self.spawn_baby)
+        
+    
+    def spawn_bonus(self):
+        """
+        Spawns a bonus 
+        """
+        if random.randint(1,Globals.bonus_chance) == 1:
+            new_bonus = random.choice([ShieldBonus(self.room, self.x, self.y + self.height/2),
+                                       LifeBonus(self.room, self.x, self.y + self.height/2)])
+            self.room.add_room_object(new_bonus)
+        self.set_timer(Globals.bonus_time, self.spawn_bonus)
+        
