@@ -250,7 +250,7 @@ class Level:
                 event()
 
 
-    def count_object(self, object_name):
+    def count_object(self, object_name: str) -> int:
         total = 0
         for item in self.objects:
             item_type = type(item).__name__
