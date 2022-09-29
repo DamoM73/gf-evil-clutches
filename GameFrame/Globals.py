@@ -52,6 +52,7 @@ class Globals:
     # fireball variables
     fireball_speed = 20
     fireball_max = 1
+    unharmed_kill_count = 0
     
     # baby variables
     baby_min_spawn = 30         # ticks of game clock
@@ -63,7 +64,8 @@ class Globals:
     baby_target = 10
     
     # bonus variables
-    bonus_chance = 1
-    bonus_time = 30
+    bonus_chance = 100
+    bonus_time = 300
     bonus_speed = 8
     invincible_duration = 300
+    

@@ -60,7 +60,8 @@ class Demon(RoomObject):
                 if Globals.LIVES > 0:
                     self.room.lives.update_image()
                 else:
-                    self.room.running = False        
+                    self.room.running = False    
+                Globals.unharmed_kill_count = 0    
             self.room.delete_object(self)
     
     

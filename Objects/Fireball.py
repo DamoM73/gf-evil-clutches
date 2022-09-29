@@ -41,10 +41,13 @@ class Fireball(RoomObject):
             self.room.delete_object(other)
             self.room.delete_object(self)
             self.room.score.update_score(5)
+            Globals.unharmed_kill_count += 1
+            Globals.fireball_max = Globals.unharmed_kill_count // 10 + 1
         elif other_type == "Baby":
             self.room.delete_object(other)
             self.room.delete_object(self)
             self.room.score.update_score(-10)
+            self.room.target.update_target(False)
             
     
     def outside_of_room(self):

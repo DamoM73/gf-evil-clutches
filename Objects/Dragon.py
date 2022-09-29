@@ -45,9 +45,9 @@ class Dragon(RoomObject):
         Respond to keypress up and down
         """
         
-        if key[pygame.K_w]: 
+        if key[pygame.K_w] or key[pygame.K_UP]: 
             self.y_speed = -10         
-        elif key[pygame.K_s]:
+        elif key[pygame.K_s] or key[pygame.K_DOWN]:
             self.y_speed = 10
         elif key[pygame.K_SPACE]:
             self.shoot_fireball()

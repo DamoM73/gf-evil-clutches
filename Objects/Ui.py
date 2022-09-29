@@ -69,11 +69,14 @@ class RescueTarget(TextObject):
         self.update_text()
                 
     
-    def update_target(self):
+    def update_target(self, rescue: bool):
         """
-        Records a rescue of a baby
+        Changes the update target. If rescue True, baby is rescued, if rescue false, baby has been hit
         """
-        Globals.baby_rescued += 1
+        if rescue:
+            Globals.baby_rescued += 1
+        else:
+            Globals.baby_target -= 1
         if Globals.baby_rescued == Globals.baby_target:
             self.target_bonus()
             Globals.baby_rescued = 0

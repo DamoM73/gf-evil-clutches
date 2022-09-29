@@ -57,7 +57,7 @@ class Baby(RoomObject):
         # dragon collision
         if other_type == "Dragon":
             self.room.score.update_score(50)
-            self.room.target.update_target()
+            self.room.target.update_target(True)
             self.room.delete_object(self)
             
     
