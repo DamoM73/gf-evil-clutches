@@ -44,10 +44,13 @@ class Globals:
 
     # ----- User Defined Global Variables below this line ----- #
     
+    # ship vaiables
+    ship_type = "Swerve"
+    
     # demon variables
     demon_min_spawn = 15        # ticks of game clock
-    demon_max_spawn = None       # ticks of game clock
-    demon_speed = None
+    demon_max_spawn = 150       # ticks of game clock
+    demon_speed = 10
     
     # fireball variables
     fireball_speed = 20

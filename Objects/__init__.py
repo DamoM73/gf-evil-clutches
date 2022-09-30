@@ -1,5 +1,5 @@
 from Objects.Credits import Credits, FinalScore
-from Objects.Title import Title, DifficultyText
+from Objects.Title import Title, Difficulty, ShipSelector
 from Objects.Dragon import Dragon
 from Objects.Boss import Boss
 from Objects.Demon import Demon

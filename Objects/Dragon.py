@@ -28,8 +28,20 @@ class Dragon(RoomObject):
         self.image_frames = []
         self.invincible_frames = []
         for index in range(self.num_frames):
-            self.image_frames.append(self.load_image(f"Rescue_frames/Rescue_{index}.png"))
-            self.invincible_frames.append(self.load_image(f"Rescue_invinc_frames/Rescue_{index}.png"))        
+            if Globals.ship_type == "Swerve":
+                self.image_frames.append(self.load_image(
+                    f"Rescue_frames/Rescue_{index}.png"
+                    ))
+                self.invincible_frames.append(self.load_image(
+                    f"Rescue_invinc_frames/Rescue_{index}.png"
+                    ))
+            elif Globals.ship_type == "Attractor":
+                self.image_frames.append(self.load_image(
+                    f"Attractor_frames/Rescue_{index}.png"
+                    ))
+                self.invincible_frames.append(
+                    self.load_image(f"Attractor_invinc_frames/Rescue_{index}.png"
+                    ))
         self.update_image()
         
         # register events
