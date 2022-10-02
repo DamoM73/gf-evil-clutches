@@ -57,6 +57,7 @@ class Demon(RoomObject):
         if other_type == "Dragon":
             if not other.invincible:
                 Globals.LIVES -= 1
+                self.room.ship_damage.play()
                 if Globals.LIVES > 0:
                     self.room.lives.update_image()
                 else:

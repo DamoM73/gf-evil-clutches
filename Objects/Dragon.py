@@ -48,7 +48,8 @@ class Dragon(RoomObject):
         self.handle_key_events = True
         
         # firing mechanism
-        self.can_shoot = True
+        self.can_shoot = False
+        self.set_timer(5,self.reset_shoot)
         
         
     
@@ -63,10 +64,11 @@ class Dragon(RoomObject):
         elif key[pygame.K_s] or key[pygame.K_DOWN]:
             self.y_speed = Globals.ship_speed
         elif key[pygame.K_SPACE]:
-            self.shoot_fireball()
+            self.shoot_fireball()    
         elif (key[pygame.K_LCTRL] or key[pygame.K_RCTRL]) and Globals.skill_available:
             Globals.skill_available = False
             self.activate_skill()
+            self.room.skill.play()
                 
     
     def update_image(self):
@@ -103,6 +105,7 @@ class Dragon(RoomObject):
         Shoots a fireball from the Dragon
         """
         if self.room.count_object("Fireball") < Globals.fireball_max and self.can_shoot:
+            self.room.laser_shot.play()
             new_fireball = Fireball(self.room, self.x + self.width, self.y + self.height/2 - 4)
             self.room.add_room_object(new_fireball)            
             self.can_shoot = False

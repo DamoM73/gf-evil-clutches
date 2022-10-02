@@ -27,9 +27,8 @@ class WelcomeScreen(Level):
         self.add_room_object(self.diff_choice)
         self.diff_choice.update()
         
-        
-        
         # play music
         self.soundtrack = self.load_sound("Music.mp3")
+        self.soundtrack.set_volume(0.2)
         self.soundtrack.play(loops=-1)
-        self.soundtrack.set_volume(0.5)
+        

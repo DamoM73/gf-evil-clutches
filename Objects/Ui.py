@@ -90,6 +90,7 @@ class RescueTarget(TextObject):
         """
         Gives bonus for reaching target
         """
+        self.room.bonus_score.play()
         self.room.score.update_score(Globals.baby_rescued * 10)
         
 

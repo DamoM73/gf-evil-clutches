@@ -40,6 +40,7 @@ class LifeBonus(RoomObject):
         # dragon collision
         if other_type == "Dragon":
             if Globals.LIVES < 5:
+                self.room.life_increase.play()
                 Globals.LIVES += 1
                 self.room.lives.update_image()
             self.room.delete_object(self)
@@ -91,6 +92,7 @@ class ShieldBonus(RoomObject):
         """
         # dragon collision
         if other_type == "Dragon":
+            self.room.shields.play()
             other.set_invincible()
             self.room.delete_object(self)
             

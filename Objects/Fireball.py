@@ -38,12 +38,17 @@ class Fireball(RoomObject):
         Handles fireball collisions with other registered objects
         """
         if other_type == "Demon":
+            self.room.asteroid_hit.play()
             self.room.delete_object(other)
             self.room.delete_object(self)
             self.room.score.update_score(5)
             Globals.unharmed_kill_count += 1
+            print(f"{Globals.unharmed_kill_count=}")
+            if Globals.unharmed_kill_count % 10 == 0:
+                self.room.shot_increase.play()
             Globals.fireball_max = Globals.unharmed_kill_count // 10 + 1
         elif other_type == "Baby":
+            self.room.astronaut_hit.play()
             self.room.delete_object(other)
             self.room.delete_object(self)
             self.room.score.update_score(-10)
