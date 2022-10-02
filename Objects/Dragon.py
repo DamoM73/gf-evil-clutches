@@ -50,6 +50,7 @@ class Dragon(RoomObject):
         # firing mechanism
         self.can_shoot = True
         
+        
     
     # --- event handlers
     def key_pressed(self, key):
@@ -58,11 +59,14 @@ class Dragon(RoomObject):
         """
         
         if key[pygame.K_w] or key[pygame.K_UP]: 
-            self.y_speed = -10         
+            self.y_speed = Globals.ship_speed * -1       
         elif key[pygame.K_s] or key[pygame.K_DOWN]:
-            self.y_speed = 10
+            self.y_speed = Globals.ship_speed
         elif key[pygame.K_SPACE]:
             self.shoot_fireball()
+        elif (key[pygame.K_LCTRL] or key[pygame.K_RCTRL]) and Globals.skill_available:
+            Globals.skill_available = False
+            self.activate_skill()
                 
     
     def update_image(self):
@@ -122,6 +126,16 @@ class Dragon(RoomObject):
         
     def reset_invincible(self):
         """
-        Turns invinciblew off
+        Turns invincible off
         """
         self.invincible = False
+        
+        
+    def activate_skill(self):
+        """
+        Activates the ships special skill according to the ship type
+        """                
+        Globals.skill_active = True
+        Globals.skill_available = False
+        Globals.ship_speed = 20
+        self.room.skill_counter.countdown()

@@ -187,6 +187,7 @@ class RoomObject:
 
         return x, y
 
+
     def rotate(self, angle: int):
 
         if self.curr_rotation > 360:
@@ -208,9 +209,10 @@ class RoomObject:
         self.rect.x = self.x
         self.rect.y = self.y
 
-    def rotate_to_coordinate(self, mouse_x: int, mouse_y: int):
-        distance_x = self.x + (self.width / 2) - mouse_x
-        distance_y = self.y + (self.height / 2) - mouse_y
+
+    def rotate_to_coordinate(self, x: int, y: int):
+        distance_x = self.x + (self.width / 2) - x
+        distance_y = self.y + (self.height / 2) - y
 
         angle = math.degrees(math.atan2(distance_x, distance_y))
 

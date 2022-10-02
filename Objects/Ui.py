@@ -92,3 +92,50 @@ class RescueTarget(TextObject):
         """
         self.room.score.update_score(Globals.baby_rescued * 10)
         
+
+class SkillCounter(RoomObject):
+    """
+    Counts down the skill once in use
+    """
+    def __init__(self, room, x: int, y: int):
+        """
+        Initialise the skill counter 
+        """
+        # include attributes and methods from RoomObject
+        RoomObject.__init__(self, room, x, y)
+        
+        # set animation values
+        self.num_frames = 7
+        self.current_frame = 6
+        
+        # set image
+        self.image_frames = []
+        for index in range(self.num_frames):
+            self.image_frames.append(self.load_image(
+                f"Skill_frames\Skill_{index}.png"
+            ))
+        self.set_image(self.image_frames[self.current_frame],124,23)
+        
+        
+    def countdown(self):
+        self.current_frame = 0
+        self.update_image()
+    
+    
+    def update_image(self):
+        if self.current_frame < self.num_frames - 1:
+            self.set_image(self.image_frames[self.current_frame],124,23)
+            self.current_frame += 1
+            self.set_timer(Globals.skill_duration, self.update_image)
+        else:
+            Globals.skill_active = False
+            Globals.ship_speed = 10
+            self.current_frame = 5
+            self.set_image(self.image_frames[self.current_frame],124,23)
+            self.set_timer(Globals.skill_cooldown, self.activate_skill)
+            
+            
+    def activate_skill(self):
+        self.current_frame = 6
+        self.set_image(self.image_frames[self.current_frame],124,23)
+        Globals.skill_available = True

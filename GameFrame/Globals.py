@@ -45,7 +45,14 @@ class Globals:
     # ----- User Defined Global Variables below this line ----- #
     
     # ship vaiables
+    ship_speed = 10
     ship_type = "Swerve"
+    
+    # skills variables
+    skill_active = False
+    skill_available = True
+    skill_duration = 30
+    skill_cooldown = 300
     
     # demon variables
     demon_min_spawn = 15        # ticks of game clock

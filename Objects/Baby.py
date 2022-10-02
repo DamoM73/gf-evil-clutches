@@ -47,6 +47,8 @@ class Baby(RoomObject):
         Determines what happend to the baby on each tick of the game clock
         """
         self.outside_of_room()
+        if Globals.skill_active and Globals.ship_type == "Attractor":
+            self.rotate_to_coordinate(self.room.dragon.x,self.room.dragon.y)
     
     
     # --- Event Handlers
