@@ -17,7 +17,7 @@ class EndScreen(Level):
         # --- Add final score
         self.final_score = FinalScore(self, 
                                       Globals.SCREEN_WIDTH / 2 - 300,
-                                      Globals.SCREEN_HEIGHT / 2 - 80,
+                                      Globals.SCREEN_HEIGHT / 2 - 180,
                                       f"SCORE: {Globals.SCORE}")
         self.add_room_object(self.final_score)
         self.final_score.update_text()
