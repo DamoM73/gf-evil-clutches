@@ -26,7 +26,7 @@ class Globals:
     window_name = "Evil Clutches"
 
     # - Set the order of the rooms
-    levels = ["WelcomeScreen","GamePlay","EndScreen"]
+    levels = ["WelcomeScreen","Instructions","GamePlay","EndScreen"]
 
     # - Set the starting level
     start_level = 0
