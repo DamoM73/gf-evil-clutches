@@ -1,14 +1,14 @@
 from GameFrame import RoomObject, Globals
 import random
 
-class Demon(RoomObject):
+class Asteroid(RoomObject):
     """
     A class for the game's evil minons
     """
     
     def __init__(self, room, x, y):  
         """
-        Initialise the Demon object
+        Initialise the Asteroid object
         """
         # include attributes and methods from RoomObject
         RoomObject.__init__(self,room, x, y)
@@ -26,15 +26,15 @@ class Demon(RoomObject):
         
         # set travel direction
         angle = random.randint(135,225)
-        self.set_direction(angle, Globals.demon_speed)
+        self.set_direction(angle, Globals.asteroid_speed)
         
         # register events
-        self.register_collision_object("Dragon")
+        self.register_collision_object("Ship")
         
     
     def update_image(self):
         """
-        Animates the Demon by changing the image as per frame rate
+        Animates the asteroid by changing the image as per frame rate
         """
         self.current_frame = (self.current_frame + 1) % self.num_frames
         self.set_image(self.image_frames[self.current_frame],50,49)
@@ -43,7 +43,7 @@ class Demon(RoomObject):
            
     def step(self):
         """
-        Determines what happens to the demon on each tick of the game clock
+        Determines what happens to the asteroid on each tick of the game clock
         """
         self.keep_in_room()
         self.outside_of_room()
@@ -52,9 +52,9 @@ class Demon(RoomObject):
     # --- Event Handlers
     def handle_collision(self, other, other_type):
         """
-        Handles the collision events for Demon objects
+        Handles the collision events for Asteroid objects
         """
-        if other_type == "Dragon":
+        if other_type == "Ship":
             if not other.invincible:
                 Globals.LIVES -= 1
                 self.room.ship_damage.play()
@@ -68,7 +68,7 @@ class Demon(RoomObject):
     
     def keep_in_room(self):
         """
-        Keeps the demon inside the top and bottom room limits
+        Keeps the asteroid inside the top and bottom room limits
         """
         if self.y < 0:
             self.y = 0
@@ -80,7 +80,7 @@ class Demon(RoomObject):
     
     def outside_of_room(self):
         """
-        removes demons that have exited the room
+        removes asteroid that have exited the room
         """
         if self.x < 0 - self.width:
             self.room.delete_object(self)

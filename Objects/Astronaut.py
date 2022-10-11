@@ -2,15 +2,15 @@ from GameFrame import RoomObject
 from GameFrame.Globals import Globals
 import random
 
-class Baby(RoomObject):
+class Astronaut(RoomObject):
     """
-    Class for the babies escaping from the Boss
+    Class for the babies escaping from the Zork
     """
     
     def __init__(self,room,x,y):
         # sourcery skip: for-append-to-extend, list-comprehension, remove-zero-from-range
         """
-        Initialise the baby instance
+        Initialise the astronaut instance
         """
         # include attirbutes and method from RoomObject
         RoomObject.__init__(self,room,x,y)
@@ -27,15 +27,15 @@ class Baby(RoomObject):
         self.update_image()
         
         # set travel direction
-        self.set_direction(180, Globals.baby_speed)
+        self.set_direction(180, Globals.astronaut_speed)
         
         # handle events
-        self.register_collision_object("Dragon")
+        self.register_collision_object("Ship")
         
     
     def update_image(self):
         """
-        Animates the Baby by chnaging the image per frame rate
+        Animates the Astronaut by chnaging the image per frame rate
         """
         self.current_frame = (self.current_frame + 1) % self.num_frames
         self.set_image(self.image_fames[self.current_frame], 56, 56)
@@ -44,20 +44,20 @@ class Baby(RoomObject):
     
     def step(self):
         """
-        Determines what happend to the baby on each tick of the game clock
+        Determines what happend to the astronaut on each tick of the game clock
         """
         self.outside_of_room()
         if Globals.skill_active and Globals.ship_type == "Attractor":
-            self.rotate_to_coordinate(self.room.dragon.x,self.room.dragon.y)
+            self.rotate_to_coordinate(self.room.ship.x,self.room.ship.y)
     
     
     # --- Event Handlers
     def handle_collision(self, other, other_type):
         """
-        Handles the collision event for Baby objects
+        Handles the collision event for Astronaut objects
         """
-        # dragon collision
-        if other_type == "Dragon":
+        # ship collision
+        if other_type == "Ship":
             self.room.astronaut_saved.play()
             self.room.score.update_score(50)
             self.room.target.update_target(True)

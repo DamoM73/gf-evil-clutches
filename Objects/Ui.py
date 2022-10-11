@@ -71,18 +71,18 @@ class RescueTarget(TextObject):
     
     def update_target(self, rescue: bool):
         """
-        Changes the update target. If rescue True, baby is rescued, if rescue false, baby has been hit
+        Changes the update target. If rescue True, astronaut is rescued, if rescue false, astronaut has been hit
         """
         if rescue:
-            Globals.baby_rescued += 1
+            Globals.astronaut_rescued += 1
         else:
-            Globals.baby_target -= 1
-        if Globals.baby_rescued == Globals.baby_target:
+            Globals.astronaut_target -= 1
+        if Globals.astronaut_rescued == Globals.astronaut_target:
             self.target_bonus()
-            Globals.baby_rescued = 0
-            Globals.baby_target *= 2
-            Globals.demon_speed += 3
-        self.text = f"{Globals.baby_rescued}/{Globals.baby_target} Rescued"
+            Globals.astronaut_rescued = 0
+            Globals.astronaut_target *= 2
+            Globals.asteroid_speed += 3
+        self.text = f"{Globals.astronaut_rescued}/{Globals.astronaut_target} Rescued"
         self.update_text()
         
         
@@ -91,7 +91,7 @@ class RescueTarget(TextObject):
         Gives bonus for reaching target
         """
         self.room.bonus_score.play()
-        self.room.score.update_score(Globals.baby_rescued * 10)
+        self.room.score.update_score(Globals.astronaut_rescued * 10)
         
 
 class SkillCounter(RoomObject):

@@ -29,7 +29,7 @@ class LifeBonus(RoomObject):
         self.set_direction(180, Globals.bonus_speed)
         
         # handle events
-        self.register_collision_object("Dragon")
+        self.register_collision_object("Ship")
         
         
     # - Event Handlers
@@ -37,8 +37,8 @@ class LifeBonus(RoomObject):
         """
         Handles collisions for the life bonus object
         """
-        # dragon collision
-        if other_type == "Dragon":
+        # ship collision
+        if other_type == "Ship":
             if Globals.LIVES < 5:
                 self.room.life_increase.play()
                 Globals.LIVES += 1
@@ -82,7 +82,7 @@ class ShieldBonus(RoomObject):
         self.set_direction(180, Globals.bonus_speed)
 
         # handle events
-        self.register_collision_object("Dragon")
+        self.register_collision_object("Ship")
                 
     
     # -- Event Handlers
@@ -90,8 +90,8 @@ class ShieldBonus(RoomObject):
         """
         Handles collisions for the shield bonus object
         """
-        # dragon collision
-        if other_type == "Dragon":
+        # ship collision
+        if other_type == "Ship":
             self.room.shields.play()
             other.set_invincible()
             self.room.delete_object(self)

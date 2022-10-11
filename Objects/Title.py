@@ -61,16 +61,16 @@ class Difficulty(RoomObject):
         Changes the difficulty in response to key press
         """
         if key[pygame.K_e]:
-            Globals.demon_speed = 5
-            Globals.demon_max_spawn = 200
+            Globals.asteroid_speed = 5
+            Globals.asteroid_max_spawn = 200
             self.set_image(self.image_frames[0],500,78)
         elif key[pygame.K_m]:
-            Globals.demon_speed = 10
-            Globals.demon_max_spawn = 150
+            Globals.asteroid_speed = 10
+            Globals.asteroid_max_spawn = 150
             self.set_image(self.image_frames[1],500,78)
         elif key[pygame.K_h]:
-            Globals.demon_speed = 15
-            Globals.demon_max_spawn = 100
+            Globals.asteroid_speed = 15
+            Globals.asteroid_max_spawn = 100
             self.set_image(self.image_frames[2],500,78)
             
 

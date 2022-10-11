@@ -54,27 +54,27 @@ class Globals:
     skill_duration = 30
     skill_cooldown = 300
     
-    # demon variables
-    demon_min_spawn = 15        # ticks of game clock
-    demon_max_spawn = 150       # ticks of game clock
-    demon_speed = 10
+    # asteroid variables
+    asteroid_min_spawn = 15        # ticks of game clock
+    asteroid_max_spawn = 150       # ticks of game clock
+    asteroid_speed = 10
     
-    # fireball variables
-    fireball_speed = 20
-    fireball_max = 1
+    # laser variables
+    laser_speed = 20
+    laser_max = 1
     unharmed_kill_count = 0
     
-    # baby variables
-    baby_min_spawn = 30         # ticks of game clock
-    baby_max_spawn = 200        # ticks of game clock
-    baby_speed = 5
+    # astronaut variables
+    astronaut_min_spawn = 30         # ticks of game clock
+    astronaut_max_spawn = 200        # ticks of game clock
+    astronaut_speed = 5
     
-    # baby rescue target vaariable
-    baby_rescued = 0
-    baby_target = 10
+    # astronaut rescue target vaariable
+    astronaut_rescued = 0
+    astronaut_target = 10
     
     # bonus variables
-    bonus_chance = 100
+    bonus_chance = 10
     bonus_time = 300
     bonus_speed = 8
     invincible_duration = 300

@@ -1,17 +1,17 @@
 from GameFrame import RoomObject, Globals
-from Objects.Fireball import Fireball
+from Objects.Laser import Laser
 import pygame
 
-from Objects.Fireball import Fireball
+from Objects.Laser import Laser
 
-class Dragon(RoomObject):
+class Ship(RoomObject):
     """
-    A class for the player's avitar (the Dragon)
+    A class for the player's avitar (the Ship)
     """
     
     def __init__(self, room, x, y):
         """
-        Initialise the Dragon object
+        Initialise the Ship object
         """
         # include attributes and methods from RoomObject
         RoomObject.__init__(self,room, x, y)
@@ -64,7 +64,7 @@ class Dragon(RoomObject):
         elif key[pygame.K_s] or key[pygame.K_DOWN]:
             self.y_speed = Globals.ship_speed
         elif key[pygame.K_SPACE]:
-            self.shoot_fireball()    
+            self.shoot_laser()    
         elif (key[pygame.K_LCTRL] or key[pygame.K_RCTRL]) and Globals.skill_available:
             Globals.skill_available = False
             self.activate_skill()
@@ -73,7 +73,7 @@ class Dragon(RoomObject):
     
     def update_image(self):
         """
-        Animates the Dragon by changing the image per the frame rate
+        Animates the Ship by changing the image per the frame rate
         """
         self.current_frame = (self.current_frame + 1) % self.num_frames
         if self.invincible:
@@ -85,14 +85,14 @@ class Dragon(RoomObject):
     
     def step(self):
         """
-        Determine what happens to the Dragon on each click of the game clock
+        Determine what happens to the Ship on each click of the game clock
         """
         self.keep_in_room()
             
     
     def keep_in_room(self):
         """
-        Keeps the dragon inside the top and bottom room limits
+        Keeps the ship inside the top and bottom room limits
         """
         if self.y < 0:
             self.y = 0
@@ -100,14 +100,14 @@ class Dragon(RoomObject):
             self.y = Globals.SCREEN_HEIGHT - self.height
             
             
-    def shoot_fireball(self):
+    def shoot_laser(self):
         """
-        Shoots a fireball from the Dragon
+        Shoots a laser from the Ship
         """
-        if self.room.count_object("Fireball") < Globals.fireball_max and self.can_shoot:
+        if self.room.count_object("Laser") < Globals.laser_max and self.can_shoot:
             self.room.laser_shot.play()
-            new_fireball = Fireball(self.room, self.x + self.width, self.y + self.height/2 - 4)
-            self.room.add_room_object(new_fireball)            
+            new_laser = Laser(self.room, self.x + self.width, self.y + self.height/2 - 4)
+            self.room.add_room_object(new_laser)            
             self.can_shoot = False
             self.set_timer(10, self.reset_shoot)
             
@@ -121,7 +121,7 @@ class Dragon(RoomObject):
         
     def set_invincible(self):
         """
-        Makes the Dragon invincible for limited time
+        Makes the Ship invincible for limited time
         """
         self.invincible = True
         self.set_timer(Globals.invincible_duration, self.reset_invincible)
