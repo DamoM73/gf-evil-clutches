@@ -9,9 +9,9 @@ class Text(TextObject):
         """
         Initialise the Instructions object
         """
-        TextObject.__init__(room, x, y, text)
+        TextObject.__init__(self, room, x, y, text)
         
-        # set values         
-        self.size = 60
+        # set values          
+        self.size = 40
         self.font = 'Arial Black'
         self.colour = (255,255,255)
