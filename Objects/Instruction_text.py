@@ -1,4 +1,5 @@
 from GameFrame import TextObject
+import pygame
 
 class Text(TextObject):
     """
@@ -15,3 +16,16 @@ class Text(TextObject):
         self.size = 40
         self.font = 'Arial Black'
         self.colour = (255,255,255)
+        
+        # register events
+        self.handle_key_events = True
+        
+    
+    # --- event handlers
+    def key_pressed(self, key):
+        """
+        Respond to space keypress 
+        """
+        
+        if key[pygame.K_SPACE]:
+            self.room.running = False
