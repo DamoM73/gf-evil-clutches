@@ -8,10 +8,6 @@ class Title(RoomObject):
     The object for displaying the title
     """
     def __init__(self, room, x, y):
-        """
-        Initialise the Title object
-        """
-        # include attributes and methods from RoomObject
         RoomObject.__init__(self, room, x, y)
         
         # set image
