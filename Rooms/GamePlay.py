@@ -11,8 +11,8 @@ class GamePlay(Level):
         self.set_background_image("Background.png")
         
         # add objects
-        self.ship = (Ship(self, 25, 50))
-        self.add_room_object(self.ship)
+        #self.ship = (Ship(self, 25, 50))
+        self.add_room_object(Ship(self, 25, 50))
         self.add_room_object(Zork(self, Globals.SCREEN_WIDTH - 225, 200))
         
         self.score = Score(self, Globals.SCREEN_WIDTH/2 - 20, 20, str(Globals.SCORE))
