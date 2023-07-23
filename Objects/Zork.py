@@ -1,4 +1,3 @@
-from distutils.spawn import spawn
 from GameFrame import RoomObject, Globals
 from Objects.Asteroid import Asteroid
 from Objects.Astronaut import Astronaut
