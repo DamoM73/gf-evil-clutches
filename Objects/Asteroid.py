@@ -82,7 +82,7 @@ class Asteroid(RoomObject):
         """
         removes asteroid that have exited the room
         """
-        if self.x < 0 - self.width:
+        if self.x + self.width < 0:
             self.room.delete_object(self)
         
         
