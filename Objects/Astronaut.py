@@ -4,7 +4,7 @@ import random
 
 class Astronaut(RoomObject):
     """
-    Class for the babies escaping from the Zork
+    Class for the astronauts escaping from Zork
     """
     
     def __init__(self,room,x,y):
@@ -66,7 +66,7 @@ class Astronaut(RoomObject):
     
     def outside_of_room(self):
         """
-        removes babies that have existed the room
+        removes astronauts that have existed the room
         """
         if self.x < 0 - self.width:
             self.room.delete_object(self)
