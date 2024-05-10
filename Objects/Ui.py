@@ -149,4 +149,8 @@ class Timer(TextObject):
     def __init__(self, room, x: int, y: int, text=None):
         """
         Intialises the timer object
-        """   
+        """
+        self.now = datetime.now()
+        
+    def step(self):
+        pass
