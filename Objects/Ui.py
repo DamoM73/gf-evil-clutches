@@ -1,5 +1,6 @@
 from GameFrame import TextObject, RoomObject
 from GameFrame.Globals import Globals
+import datetime
 
 
 class Score(TextObject):
@@ -140,3 +141,12 @@ class SkillCounter(RoomObject):
         self.current_frame = 6
         self.set_image(self.image_frames[self.current_frame],124,23)
         Globals.skill_available = True
+        
+class Timer(TextObject):
+    """
+    A class for countdown
+    """
+    def __init__(self, room, x: int, y: int, text=None):
+        """
+        Intialises the timer object
+        """   
