@@ -73,7 +73,7 @@ class Ship(RoomObject):
     
     def update_image(self):
         """
-        Animates the Ship by changing the image per the frame rate
+        Animates the Ship by changing the image per the frame rate global variable
         """
         self.current_frame = (self.current_frame + 1) % self.num_frames
         if self.invincible:
