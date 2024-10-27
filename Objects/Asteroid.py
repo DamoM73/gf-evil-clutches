@@ -47,6 +47,7 @@ class Asteroid(RoomObject):
         """
         self.keep_in_room()
         self.outside_of_room()
+        print(self.curr_rotation)
         
     
     # --- Event Handlers
